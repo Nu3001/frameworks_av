@@ -546,6 +546,9 @@ void ID3::Iterator::getstring(String8 *id, bool otherdata) const {
         convertISO8859ToString8(frameData, mFrameSize, id);
         return;
     }
+    if (mFrameSize < getHeaderLength() + 1) {
+        return;
+    }
 
     size_t n = mFrameSize - getHeaderLength() - 1;
     if (otherdata) {
